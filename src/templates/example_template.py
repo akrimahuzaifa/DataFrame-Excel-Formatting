@@ -19,6 +19,8 @@ def create_example_template():
         set_alignment(ws, cell.coordinate, horizontal='center')
         set_cell_color(ws, cell.coordinate, color="00FFCC")  # Light green background
 
+
+
     # Add data
     data = [
         ["Item A", 1000, 0.25],
@@ -29,8 +31,11 @@ def create_example_template():
     for item, amount, percentage in data:
         ws.append([item, amount, percentage])
 
+    # Insert a blank row between header and data
+    ws.insert_rows(2)
+
     # Format Amount and Percentage columns
-    for row in range(2, len(data) + 2):
+    for row in range(3, len(data) + 2):
         ws.cell(row=row, column=2).number_format = '"$"#,##0.00'  # Dollar format
         ws.cell(row=row, column=3).number_format = '0.00%'  # Percentage format
 
