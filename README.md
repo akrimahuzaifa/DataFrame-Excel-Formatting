@@ -1,6 +1,7 @@
 # Excel Formatting Project
 
-This project provides a set of utilities for formatting Excel output files. It includes features such as filling cells with colors, adding dollar and percentage signs to specific columns, merging and centering rows, and styling headers.
+This project provides a set of utilities for formatting Excel output files. It includes features such as filling cells with colors, adding dollar and percentage signs to specific columns, merging and centering rows, styling headers and apply cborders to cells.
+
 
 ## Project Structure
 
@@ -32,6 +33,10 @@ excel-formatting-project
    ```
 
 ## Usage
+Example template: to run and check the functionalities in action:
+```bash
+python -m src.templates.example_template
+```
 
 To format an Excel file, you can use the functions defined in `src/formatter.py`. Here’s a brief overview of the available functions:
 

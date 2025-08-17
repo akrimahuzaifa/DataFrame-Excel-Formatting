@@ -1,6 +1,6 @@
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Font, Alignment
-from ..utils.styles import set_cell_color, set_font_style, set_alignment
+from ..utils.styles import *
 
 def create_example_template():
     # Create a new workbook and select the active worksheet
@@ -15,9 +15,9 @@ def create_example_template():
     # Style the header
     for col in range(1, len(headers) + 1):
         cell = ws.cell(row=1, column=col)
-        set_font_style(cell, bold=True)
-        set_alignment(cell, horizontal='center')
-        set_cell_color(cell, color="00FFCC")  # Light green background
+        set_font_style(ws, cell.coordinate, bold=True)
+        set_alignment(ws, cell.coordinate, horizontal='center')
+        set_cell_color(ws, cell.coordinate, color="00FFCC")  # Light green background
 
     # Add data
     data = [
@@ -38,8 +38,13 @@ def create_example_template():
     ws.merge_cells('A1:C1')
     title_cell = ws.cell(row=1, column=1)
     title_cell.value = "Sales Report"
-    set_font_style(title_cell, bold=True)
-    set_alignment(title_cell, horizontal='center', vertical='center')
+    set_font_style(ws, title_cell.coordinate, bold=True)
+    set_alignment(ws, title_cell.coordinate, horizontal='center', vertical='center')
+
+    # Apply borders to all cells
+    for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=ws.max_column):
+        for cell in row:
+            set_border(ws, cell.coordinate)
 
     # Save the workbook
     wb.save("example_report.xlsx")

@@ -1,4 +1,5 @@
 from openpyxl.styles import PatternFill, Font, Alignment
+from openpyxl.styles.borders import Border, Side
 
 def set_cell_color(sheet, cell, color):
     fill = PatternFill(start_color=color, end_color=color, fill_type="solid")
@@ -23,3 +24,12 @@ def merge_and_center(sheet, start_cell, end_cell):
                       end_row=end_cell[0], end_column=end_cell[1])
     merged_cell = sheet.cell(row=start_cell[0], column=start_cell[1])
     set_alignment(sheet, merged_cell.coordinate, horizontal='center', vertical='center')
+
+def set_border(sheet, cell, border_style="thin", color="000000"):
+    border = Border(
+        left=Side(style=border_style, color=color),
+        right=Side(style=border_style, color=color),
+        top=Side(style=border_style, color=color),
+        bottom=Side(style=border_style, color=color)
+    )
+    sheet[cell].border = border
